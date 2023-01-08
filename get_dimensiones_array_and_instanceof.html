@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Get dimensiones e instanceof de un array x Elinv</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="./favicon.ico" />
+
+<script>
+// array de una dimensión
+let arrOneDim = ['uno', 'dos', 'tres', 'cuadro'];
+
+// array de dos dimensiónes
+let arrBidim = [
+["0", "cero0", "cero1", "cero2", "cero3"],
+["1", "uno0", "uno1", "uno2", "uno3"],
+["2", "dos0", "dos1", "dos2", "dos3"],
+["3", "tres0", "tres1", "tres2", "tres3"],
+["4", "cuatro0", "cuatro1", "cuatro2", "cuatro3"],
+["5", "cinco0", "cinco1", "cinco2", "cinco3"],
+["6", "seis0", "seis1", "seis2", "seis3"],
+["7", "siete0", "siete1", "siete2", "siete3"],
+["8", "ocho0", "ocho1", "ocho2", "ocho3"],
+["9", "nueve0", "nueve1", "nueve2", "nueve3"],
+];
+
+// array de tres dimensiones
+var arrTresDim = new Array();
+arrTresDim[0] = new Array();
+arrTresDim[0][0] = new Array()
+arrTresDim[0][0][0] = "Elinv";
+arrTresDim[0][0][1] = "2023";
+
+// No es un array es un string
+let arrNoEs_string = 'uno dos tres cuadro';
+
+// No es un array es un object
+let arrNoEs_object = {uno:'uno', dos:'dos', tres:'tres', cuatro:'cuadro'};
+
+//Posdata:
+// Otra forma
+// let arrBidim=new Array();
+// arrBidim[arrBidim.length] = new Array ('0','cero');
+// y así seguir...
+
+</script>
+
+
+</head>
+
+<body>
+
+
+	<div id="arrUnaDimension">
+		<b><u>COMPROBANDO ARRAY DE UNA DIMENSIÓN</u></b>
+		<pre>
+array de una dimensión
+-----------------------
+let arrOneDim = [
+	'uno', 'dos', 
+	'tres', 'cuadro'];
+-----------------------				
+		</pre>
+		<div id="arrUnaDimensionComp"></div> <br>
+	</div>
+
+	<hr style="border-top: 1px dotted red;">
+
+	<div id="arrDosDimension">
+		<b><u>COMPROBANDO ARRAY DE DOS DIMENSIONES</u></b>
+		<pre>
+array de dos dimensiones
+-----------------------
+// array de dos dimensiónes
+let arrBidim = [
+["0", "cero0", "cero1", "cero2", "cero3"],
+["1", "uno0", "uno1", "uno2", "uno3"],
+["2", "dos0", "dos1", "dos2", "dos3"],
+["3", "tres0", "tres1", "tres2", "tres3"],
+["4", "cuatro0", "cuatro1", "cuatro2", "cuatro3"],
+["5", "cinco0", "cinco1", "cinco2", "cinco3"],
+["6", "seis0", "seis1", "seis2", "seis3"],
+["7", "siete0", "siete1", "siete2", "siete3"],
+["8", "ocho0", "ocho1", "ocho2", "ocho3"],
+["9", "nueve0", "nueve1", "nueve2", "nueve3"],
+];
+-----------------------				
+		</pre>
+		<div id="arrDosDimensionComp"></div> <br>
+	</div>
+
+	<hr style="border-top: 1px dotted red;">
+
+	<div id="arrTresDimension">
+		<b><u>COMPROBANDO ARRAY DE TRES DIMENSIONES</u></b>
+		<pre>
+array de tres dimensiones
+-----------------------
+// array de tres dimensiones
+var arrTresDim = new Array();
+arrTresDim[0] = new Array();
+arrTresDim[0][0] = new Array()
+arrTresDim[0][0][0] = "Elinv";
+arrTresDim[0][0][1] = "2023";
+-----------------------				
+		</pre>
+		<div id="arrTresDimensionComp"></div> <br>
+	</div>
+
+	<hr style="border-top: 1px dotted red;">	
+
+	<div id="noEsUnArrayEsUnString">
+		<b><u>COMPROBANDO QUE NO ES UN ARRAY PUES ES UN STRING</u></b>
+		<pre>
+No es un array es un string
+-----------------------
+// No es un array es un string
+let arrNoEs_string = 'uno dos tres cuadro';
+-----------------------				
+		</pre>
+		<div id="noEsUnArrayEsUnStringComp"></div> <br>
+	</div>
+
+	<hr style="border-top: 1px dotted red;">
+
+	<div id="noEsUnArrayEsUnObject">
+		<b><u>COMPROBANDO QUE NO ES UN ARRAY PUES ES UN OBJECTO</u></b>
+		<pre>
+No es un array es un object
+-----------------------
+// No es un array es un object
+let arrNoEs_object = {uno:'uno', dos:'dos', tres:'tres', cuatro:'cuadro'};
+
+-----------------------				
+		</pre>
+		<div id="noEsUnArrayEsUnObjectComp"></div> <br>
+	</div>
+
+	<hr style="border-top: 1px dotted red;">
+
+	<script>
+		// función para determinar 
+		// la instancia de array y sus dimensiones
+		function dimensiones(arr) {
+			// instanceof prueba si la propiedad de un constructor 
+			// aparece en cualquier parte 
+			// de la cadena de prototipos de un objeto
+			// Pueden probar la función de esta forma
+			// --------------------------------------
+			let res = [];
+			if (arr instanceof Array){
+				res[0] = arr.length;
+				if (arr[0] instanceof Array){
+					res = res.concat(arr[0].length);
+					if (arr[0][0] instanceof Array){
+						res = res.concat(arr[0].length);
+					}
+				}
+			}
+			return res;
+			
+			// O de esta otra forma también funcional,
+			// pero apelando a sortear el análisis con
+			// try and catch 😅
+			// --------------------------------------
+			// let res = [];
+			// try {				
+			// 	if (arr instanceof Array){res[0] = arr.length;}
+			// 	if (arr[0] instanceof Array){res = res.concat(arr[0].length);}
+			// 	if (arr[0][0] instanceof Array){res = res.concat(arr[0].length);}			
+			// 	return res;
+			// } catch (error) {
+			// 	return res;
+			// }
+		}
+		// Comprobamos el array de una dimensión
+		let dimen = dimensiones(arrOneDim);
+		arrUnaDimensionComp.innerHTML = dimen.length + ' dimensiones 👍';
+
+		// Comprobamos el array de dos dimensiones
+		dimen = dimensiones(arrBidim);
+		arrDosDimensionComp.innerHTML = dimen.length + ' dimensiones 👍';
+
+		// Comprobamos el array de tres dimensiones
+		dimen = dimensiones(arrTresDim);
+		arrTresDimensionComp.innerHTML = dimen.length + ' dimensiones 👍';
+
+		// Comprobamos que no es un array, pues es un string
+		dimen = dimensiones(arrNoEs_string);
+		noEsUnArrayEsUnStringComp.innerHTML = dimen.length + ' dimensiones 👎';
+
+		// Comprobamos que no es un array, pues es un object
+		dimen = dimensiones(arrNoEs_object);
+		noEsUnArrayEsUnObjectComp.innerHTML = dimen.length + ' dimensiones 👎';
+
+	</script>
+</body>
+
+</html>
+
